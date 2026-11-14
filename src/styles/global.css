@@ -1,13 +1,44 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource-variable/source-serif-4";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+/* Every digit on the page is set in Plex Mono, even inside sans text, so
+   numbers line up like a receipt without per-component tabular-nums. */
+@font-face {
+    font-family: "Buku Angka";
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+    unicode-range: U+0030-0039;
+}
+@font-face {
+    font-family: "Buku Angka";
+    font-weight: 500;
+    font-display: swap;
+    src: url("../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+    unicode-range: U+0030-0039;
+}
+@font-face {
+    font-family: "Buku Angka";
+    font-weight: 600 900;
+    font-display: swap;
+    src: url("../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2") format("woff2");
+    unicode-range: U+0030-0039;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-heading: 'Buku Angka', 'Source Serif 4 Variable', Georgia, serif;
+    --font-sans: 'Buku Angka', 'IBM Plex Sans Variable', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --color-stamp: var(--stamp);
+    --color-rule: var(--rule);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,85 +80,114 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.841 0.238 128.85);
-    --primary-foreground: oklch(0.405 0.101 131.063);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.897 0.196 126.665);
-    --chart-2: oklch(0.768 0.233 130.85);
-    --chart-3: oklch(0.648 0.2 131.684);
-    --chart-4: oklch(0.532 0.157 131.589);
-    --chart-5: oklch(0.453 0.124 130.933);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.648 0.2 131.684);
-    --sidebar-primary-foreground: oklch(0.986 0.031 120.757);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    /* Paper, ink, and a rubber stamp. Rules are the pale blue of a buku tulis. */
+    --background: oklch(0.968 0.013 84);
+    --foreground: oklch(0.255 0.035 262);
+    --card: oklch(0.986 0.008 88);
+    --card-foreground: oklch(0.255 0.035 262);
+    --popover: oklch(0.986 0.008 88);
+    --popover-foreground: oklch(0.255 0.035 262);
+    --primary: oklch(0.31 0.065 262);
+    --primary-foreground: oklch(0.975 0.01 88);
+    --secondary: oklch(0.935 0.017 84);
+    --secondary-foreground: oklch(0.255 0.035 262);
+    --muted: oklch(0.938 0.016 84);
+    --muted-foreground: oklch(0.47 0.03 262);
+    --accent: oklch(0.925 0.02 84);
+    --accent-foreground: oklch(0.255 0.035 262);
+    --destructive: oklch(0.52 0.18 28);
+    --stamp: oklch(0.52 0.18 28);
+    --border: oklch(0.86 0.028 248);
+    --rule: oklch(0.895 0.024 245);
+    --input: oklch(0.64 0.035 255);
+    --ring: oklch(0.47 0.14 262);
+    --chart-1: oklch(0.36 0.09 262);
+    --chart-2: oklch(0.52 0.12 255);
+    --chart-3: oklch(0.66 0.09 250);
+    --chart-4: oklch(0.79 0.05 245);
+    --chart-5: oklch(0.935 0.022 84);
+    --radius: 0.125rem;
+    --sidebar: oklch(0.955 0.015 84);
+    --sidebar-foreground: oklch(0.255 0.035 262);
+    --sidebar-primary: oklch(0.31 0.065 262);
+    --sidebar-primary-foreground: oklch(0.975 0.01 88);
+    --sidebar-accent: oklch(0.925 0.02 84);
+    --sidebar-accent-foreground: oklch(0.255 0.035 262);
+    --sidebar-border: oklch(0.86 0.028 248);
+    --sidebar-ring: oklch(0.47 0.14 262);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.768 0.233 130.85);
-    --primary-foreground: oklch(0.405 0.101 131.063);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.897 0.196 126.665);
-    --chart-2: oklch(0.768 0.233 130.85);
-    --chart-3: oklch(0.648 0.2 131.684);
-    --chart-4: oklch(0.532 0.157 131.589);
-    --chart-5: oklch(0.453 0.124 130.933);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.768 0.233 130.85);
-    --sidebar-primary-foreground: oklch(0.274 0.072 132.109);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    /* Night ledger: carbon-copy ink with paper-tinted text. */
+    --background: oklch(0.205 0.022 262);
+    --foreground: oklch(0.925 0.02 85);
+    --card: oklch(0.235 0.024 262);
+    --card-foreground: oklch(0.925 0.02 85);
+    --popover: oklch(0.25 0.025 262);
+    --popover-foreground: oklch(0.925 0.02 85);
+    --primary: oklch(0.91 0.025 85);
+    --primary-foreground: oklch(0.225 0.03 262);
+    --secondary: oklch(0.285 0.026 262);
+    --secondary-foreground: oklch(0.925 0.02 85);
+    --muted: oklch(0.27 0.025 262);
+    --muted-foreground: oklch(0.74 0.022 85);
+    --accent: oklch(0.3 0.028 262);
+    --accent-foreground: oklch(0.925 0.02 85);
+    --destructive: oklch(0.68 0.16 28);
+    --stamp: oklch(0.68 0.16 28);
+    --border: oklch(0.36 0.03 258);
+    --rule: oklch(0.3 0.03 258);
+    --input: oklch(0.57 0.035 258);
+    --ring: oklch(0.74 0.11 255);
+    --chart-1: oklch(0.88 0.04 85);
+    --chart-2: oklch(0.74 0.09 250);
+    --chart-3: oklch(0.6 0.09 255);
+    --chart-4: oklch(0.46 0.06 258);
+    --chart-5: oklch(0.3 0.035 262);
+    --sidebar: oklch(0.225 0.024 262);
+    --sidebar-foreground: oklch(0.925 0.02 85);
+    --sidebar-primary: oklch(0.91 0.025 85);
+    --sidebar-primary-foreground: oklch(0.225 0.03 262);
+    --sidebar-accent: oklch(0.3 0.028 262);
+    --sidebar-accent-foreground: oklch(0.925 0.02 85);
+    --sidebar-border: oklch(0.36 0.03 258);
+    --sidebar-ring: oklch(0.74 0.11 255);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
+  html {
+    @apply font-sans antialiased;
+    font-synthesis: none;
+  }
   body {
     @apply bg-background text-foreground;
-    }
+  }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
-    }
-  html {
-    @apply font-sans;
-    }
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--stamp) 22%, transparent);
+  }
+  /* The showcase canvas is a ledger page: ruled lines every 28px and the
+     double red margin of a buku tulis. */
+  [data-slot="capture-target"] {
+    --margin-x: calc(var(--gap) / 2 - 2px);
+    background-image:
+      linear-gradient(
+        to right,
+        transparent var(--margin-x),
+        color-mix(in oklch, var(--stamp) 45%, transparent) var(--margin-x) calc(var(--margin-x) + 1px),
+        transparent calc(var(--margin-x) + 1px) calc(var(--margin-x) + 3px),
+        color-mix(in oklch, var(--stamp) 45%, transparent) calc(var(--margin-x) + 3px) calc(var(--margin-x) + 4px),
+        transparent calc(var(--margin-x) + 4px)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0 27px,
+        var(--rule) 27px 28px
+      );
+  }
 }
