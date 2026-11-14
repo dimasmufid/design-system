@@ -1,13 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/nunito-sans";
+@import "@fontsource-variable/nunito";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-heading: 'Nunito Variable', 'Nunito Sans Variable', ui-rounded, sans-serif;
+    --font-sans: 'Nunito Sans Variable', ui-sans-serif, system-ui, sans-serif;
+    --shadow-xs: var(--elevation-1);
+    --shadow-sm: var(--elevation-1);
+    --shadow-md: var(--elevation-2);
+    --shadow-lg: var(--elevation-3);
+    --shadow-xl: var(--elevation-3);
+    --shadow-card: var(--elevation-2);
+    --shadow-button: var(--elevation-button);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,73 +56,122 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Teman — warm & tactile.
+ * Cream/sand neutrals tinted toward hue ~70, terracotta primary, teal as the
+ * calm second voice. Dark mode is warm cocoa; surfaces lighten as they rise
+ * (background → card → popover). Shadows are tinted cocoa, never pure black.
+ */
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.841 0.238 128.85);
-    --primary-foreground: oklch(0.405 0.101 131.063);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.897 0.196 126.665);
-    --chart-2: oklch(0.768 0.233 130.85);
-    --chart-3: oklch(0.648 0.2 131.684);
-    --chart-4: oklch(0.532 0.157 131.589);
-    --chart-5: oklch(0.453 0.124 130.933);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.648 0.2 131.684);
-    --sidebar-primary-foreground: oklch(0.986 0.031 120.757);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --background: oklch(0.982 0.008 80);
+    --foreground: oklch(0.255 0.022 50);
+    --card: oklch(0.995 0.004 80);
+    --card-foreground: oklch(0.255 0.022 50);
+    --popover: oklch(0.995 0.004 80);
+    --popover-foreground: oklch(0.255 0.022 50);
+    --primary: oklch(0.555 0.145 40);
+    --primary-foreground: oklch(0.99 0.008 70);
+    --secondary: oklch(0.935 0.026 72);
+    --secondary-foreground: oklch(0.33 0.035 50);
+    --muted: oklch(0.955 0.016 76);
+    --muted-foreground: oklch(0.5 0.025 55);
+    --accent: oklch(0.94 0.028 62);
+    --accent-foreground: oklch(0.3 0.04 45);
+    --destructive: oklch(0.55 0.19 27);
+    --border: oklch(0.905 0.018 70);
+    --input: oklch(0.88 0.022 68);
+    --ring: oklch(0.555 0.145 40);
+    --chart-1: oklch(0.62 0.14 40);
+    --chart-2: oklch(0.58 0.085 190);
+    --chart-3: oklch(0.76 0.13 75);
+    --chart-4: oklch(0.66 0.08 135);
+    --chart-5: oklch(0.48 0.06 50);
+    --radius: 0.75rem;
+    --sidebar: oklch(0.965 0.013 76);
+    --sidebar-foreground: oklch(0.255 0.022 50);
+    --sidebar-primary: oklch(0.555 0.145 40);
+    --sidebar-primary-foreground: oklch(0.99 0.008 70);
+    --sidebar-accent: oklch(0.93 0.024 68);
+    --sidebar-accent-foreground: oklch(0.3 0.04 45);
+    --sidebar-border: oklch(0.905 0.018 70);
+    --sidebar-ring: oklch(0.555 0.145 40);
+
+    /* Soft layered depth: a hairline ring, a tight contact shadow, and a
+       wide ambient one, all tinted cocoa so they read warm on cream. */
+    --shadow-color: 40 30% 22%;
+    --elevation-1:
+        0 0 0 1px hsl(var(--shadow-color) / 0.06),
+        0 1px 2px hsl(var(--shadow-color) / 0.06),
+        0 2px 6px -2px hsl(var(--shadow-color) / 0.06);
+    --elevation-2:
+        0 0 0 1px hsl(var(--shadow-color) / 0.05),
+        0 1px 2px hsl(var(--shadow-color) / 0.05),
+        0 4px 12px -4px hsl(var(--shadow-color) / 0.08),
+        0 12px 32px -12px hsl(var(--shadow-color) / 0.10);
+    --elevation-3:
+        0 0 0 1px hsl(var(--shadow-color) / 0.06),
+        0 2px 4px hsl(var(--shadow-color) / 0.06),
+        0 8px 20px -6px hsl(var(--shadow-color) / 0.12),
+        0 24px 48px -16px hsl(var(--shadow-color) / 0.16);
+    /* Primary button: a lit top edge and a soft drop, like a pressed key. */
+    --elevation-button:
+        inset 0 1px 0 oklch(1 0 0 / 0.22),
+        0 1px 2px hsl(var(--shadow-color) / 0.14),
+        0 3px 8px -3px oklch(0.575 0.145 40 / 0.45);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.768 0.233 130.85);
-    --primary-foreground: oklch(0.405 0.101 131.063);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.897 0.196 126.665);
-    --chart-2: oklch(0.768 0.233 130.85);
-    --chart-3: oklch(0.648 0.2 131.684);
-    --chart-4: oklch(0.532 0.157 131.589);
-    --chart-5: oklch(0.453 0.124 130.933);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.768 0.233 130.85);
-    --sidebar-primary-foreground: oklch(0.274 0.072 132.109);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --background: oklch(0.205 0.014 50);
+    --foreground: oklch(0.945 0.014 75);
+    --card: oklch(0.245 0.016 50);
+    --card-foreground: oklch(0.945 0.014 75);
+    --popover: oklch(0.285 0.018 50);
+    --popover-foreground: oklch(0.945 0.014 75);
+    --primary: oklch(0.71 0.125 42);
+    --primary-foreground: oklch(0.22 0.03 40);
+    --secondary: oklch(0.305 0.02 52);
+    --secondary-foreground: oklch(0.93 0.014 75);
+    --muted: oklch(0.29 0.018 52);
+    --muted-foreground: oklch(0.74 0.025 70);
+    --accent: oklch(0.32 0.03 48);
+    --accent-foreground: oklch(0.95 0.014 75);
+    --destructive: oklch(0.7 0.17 27);
+    --border: oklch(0.96 0.03 70 / 0.1);
+    --input: oklch(0.96 0.03 70 / 0.15);
+    --ring: oklch(0.71 0.125 42);
+    --chart-1: oklch(0.72 0.13 45);
+    --chart-2: oklch(0.72 0.09 190);
+    --chart-3: oklch(0.8 0.12 78);
+    --chart-4: oklch(0.72 0.08 135);
+    --chart-5: oklch(0.6 0.05 55);
+    --sidebar: oklch(0.225 0.015 50);
+    --sidebar-foreground: oklch(0.945 0.014 75);
+    --sidebar-primary: oklch(0.71 0.125 42);
+    --sidebar-primary-foreground: oklch(0.22 0.03 40);
+    --sidebar-accent: oklch(0.3 0.022 50);
+    --sidebar-accent-foreground: oklch(0.95 0.014 75);
+    --sidebar-border: oklch(0.96 0.03 70 / 0.1);
+    --sidebar-ring: oklch(0.71 0.125 42);
+
+    /* Dark shadows barely register, so depth comes from lighter surfaces
+       plus a warm top-lit hairline; a deep shadow keeps the lift soft. */
+    --shadow-color: 30 40% 4%;
+    --elevation-1:
+        inset 0 1px 0 oklch(1 0.02 70 / 0.04),
+        0 0 0 1px oklch(0.96 0.03 70 / 0.07),
+        0 2px 6px -2px hsl(var(--shadow-color) / 0.4);
+    --elevation-2:
+        inset 0 1px 0 oklch(1 0.02 70 / 0.05),
+        0 0 0 1px oklch(0.96 0.03 70 / 0.08),
+        0 8px 24px -8px hsl(var(--shadow-color) / 0.55);
+    --elevation-3:
+        inset 0 1px 0 oklch(1 0.02 70 / 0.06),
+        0 0 0 1px oklch(0.96 0.03 70 / 0.1),
+        0 16px 40px -12px hsl(var(--shadow-color) / 0.7);
+    --elevation-button:
+        inset 0 1px 0 oklch(1 0 0 / 0.25),
+        0 1px 2px hsl(var(--shadow-color) / 0.5),
+        0 3px 10px -3px oklch(0.72 0.13 45 / 0.3);
 }
 
 @layer base {
@@ -129,5 +186,10 @@
     }
   html {
     @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
     }
 }
