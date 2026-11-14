@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css"
+import { SiteHeader } from "@/components/site/site-header"
 ---
 
 <html lang="en">
@@ -8,8 +9,23 @@ import "@/styles/global.css"
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Astro App</title>
+    <script is:inline>
+      // Apply the saved theme, or follow the system, before first paint.
+      ;(() => {
+        let theme = null
+        try {
+          theme = localStorage.getItem("theme")
+        } catch {}
+        const dark =
+          theme === "dark" ||
+          (theme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        document.documentElement.classList.toggle("dark", dark)
+        document.documentElement.style.colorScheme = dark ? "dark" : "light"
+      })()
+    </script>
   </head>
   <body>
+    <SiteHeader client:load />
     <slot />
   </body>
 </html>
